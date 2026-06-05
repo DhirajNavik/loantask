@@ -78,7 +78,12 @@ class LoanViewModel extends ChangeNotifier {
     }
 
     final record = LoanRecord(
+      timestamp: DateTime.now().toString(),
+      income: double.parse(incomeController.text),
+      existingEmi: double.tryParse(existingEmiController.text) ?? 0,
       loanAmount: double.parse(loanAmountController.text),
+      tenure: tenure,
+      employmentType: isSalaried ? 'Salaried' : 'Self Employed',
       calculatedEmi: emi,
       status: status!,
     );

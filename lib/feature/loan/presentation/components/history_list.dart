@@ -8,16 +8,30 @@ class HistoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(history.isEmpty){
+    if (history.isEmpty) {
       return Text("No History Available");
     }
     return Column(
       children: history
           .map(
-            (item) => ListTile(
-              title: Text('Loan ₹${item.loanAmount.toStringAsFixed(0)}'),
-              subtitle: Text('EMI ₹${item.calculatedEmi.toStringAsFixed(2)}'),
-              trailing: Text(item.status.name),
+            (item) => Row(
+              spacing: 10,
+              crossAxisAlignment: .start,
+              children: [
+                CircleAvatar(radius: 15, child: Text(item.id.toString())),
+                Expanded(
+                  child: ListTile(
+                    contentPadding: EdgeInsets.only(bottom: 10),
+                    minVerticalPadding: 0,
+                    minTileHeight: 0,
+                    title: Text('Loan ₹${item.loanAmount.toStringAsFixed(0)}'),
+                    subtitle: Text(
+                      'EMI ₹${item.calculatedEmi.toStringAsFixed(2)}',
+                    ),
+                    trailing: Text(item.status.name.toUpperCase()),
+                  ),
+                ),
+              ],
             ),
           )
           .toList(),
