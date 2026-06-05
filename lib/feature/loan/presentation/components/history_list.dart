@@ -14,24 +14,20 @@ class HistoryList extends StatelessWidget {
     return Column(
       children: history
           .map(
-            (item) => Row(
-              spacing: 10,
-              crossAxisAlignment: .start,
-              children: [
-                CircleAvatar(radius: 15, child: Text(item.id.toString())),
-                Expanded(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.only(bottom: 10),
-                    minVerticalPadding: 0,
-                    minTileHeight: 0,
-                    title: Text('Loan ₹${item.loanAmount.toStringAsFixed(0)}'),
-                    subtitle: Text(
-                      'EMI ₹${item.calculatedEmi.toStringAsFixed(2)}',
-                    ),
-                    trailing: Text(item.status.name.toUpperCase()),
-                  ),
-                ),
-              ],
+            (item) => ListTile(
+              leading: CircleAvatar(
+                radius: 15,
+                child: Text(item.id.toString()),
+              ),
+              contentPadding: EdgeInsets.only(bottom: 10),
+              minVerticalPadding: 0,
+              minTileHeight: 0,
+              isThreeLine: true,
+              title: Text('Loan ₹${item.loanAmount.toStringAsFixed(0)}'),
+              subtitle: Text(
+                'EMI ₹${item.calculatedEmi.toStringAsFixed(2)}',
+              ),
+              trailing: Text(item.status.name.toUpperCase()),
             ),
           )
           .toList(),
